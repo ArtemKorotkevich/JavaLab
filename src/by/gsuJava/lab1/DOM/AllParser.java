@@ -41,7 +41,6 @@ public class AllParser implements Iparser {
          System.out.println(description);
          pubDate = element.getElementsByTagName("pubDate").item(0).getChildNodes().item(0).getNodeValue();
          System.out.println(pubDate);
-         System.out.println("=================");
          NewsList.add(new News(titel, description, pubDate));
       }
       System.out.println(NewsList);
@@ -59,14 +58,17 @@ public class AllParser implements Iparser {
     InputStream stream = url.openStream();
     parser.parse(stream, handler);
     
-
-      
+    NewsList = handler.getNews();
+    
+      for(News news: NewsList) {
+        System.out.println(news);
+      }
+   
     return NewsList;
   }
 
   @Override
   public List<News> getNewsStax() throws IOException, ParserConfigurationException {
-    // TODO Auto-generated method stub
     return null;
   }
 
